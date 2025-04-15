@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import dns from 'dns';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/server-options.html#server-host

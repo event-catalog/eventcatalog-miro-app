@@ -22,3 +22,7 @@ yarn-error.log*
 # local env files
 .env
 dist
+
+data.json
+
+APP_SUBMISSION.md

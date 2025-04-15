@@ -1,4 +1,45 @@
-## Eventcatalog Miro App
+## EventCatalog Miro App
+
+Import your EventCatalog resources directly into your Miro board.
+
+This let's you see and use your EventCatalog services, events, commands and queries directly in your Miro board for collaboration with your team.
+
+## Installation
+
+- Go to the the [installation URL](https://miro.com/app-install/?response_type=code&client_id=3458764623600229458&redirect_uri=%2Fapp-install%2Fconfirm%2F)
+- Click **Install App**
+- Use the app on your board
+
+### Importing resources
+
+You have two options:
+
+1. Import resources from a URL
+2. Import resources from a JSON file
+
+#### Importing resources from a URL
+
+- Open the miro application and enter the URL of the EventCatalog (must be public)
+- Your resources will be imported into the board
+- Drag and drop the resources to the board where you want them
+
+#### Importing resources from a JSON file
+
+- Navigate to your EventCatalog instance and download the JSON file
+- Open the API route `api/catalog`
+- Save the JSON file to your local machine
+- Load the JSON file into the app
+- Drag and drop the resources to the board where you want them
+
+### Roadmap
+
+- [x] Let users import resources from EventCatalog from a URL
+- [x] Let users import resources from a JSON file
+- [] Get published on Miro Marketplace
+- [ ] Let users create resource types
+- [ ] Export designs back into EventCatalog
+
+### Contributing
 
 **&nbsp;ℹ&nbsp;Note**:
 
@@ -39,14 +80,3 @@
 ├── app.html       // The app itself. It's loaded on the board inside the 'appContainer'
 └── index.html     // The app entry point. This is what you specify in the 'App URL' box in the Miro app settings
 ```
-
-### About the app
-
-This sample app provides you with boilerplate setup and configuration that you can further customize to build your own app.
-
-<!-- describe shortly the purpose of the sample app -->
-
-Built using [`create-miro-app`](https://www.npmjs.com/package/create-miro-app).
-
-This app uses [Vite](https://vitejs.dev/). \
-If you want to modify the `vite.config.js` configuration, see the [Vite documentation](https://vitejs.dev/guide/).
