@@ -21,6 +21,7 @@ export const ANALYTICS_EVENTS = {
 
 // Cached board context
 let cachedContext: { miro_board_id: string } | null = null;
+let boardContextPromise: Promise<void> | null = null;
 let initialized = false;
 
 /**
@@ -48,24 +49,31 @@ export function initAnalytics() {
  * where miro.board is available. Uses PostHog's anonymous ID for user tracking
  * to avoid requiring the identity:read permission.
  */
-export async function captureBoardContext() {
-  if (cachedContext) return;
-  try {
-    const boardInfo = await miro.board.getInfo();
-    cachedContext = {
-      miro_board_id: boardInfo.id,
-    };
-  } catch (error) {
-    console.error('Failed to capture board context:', error);
-  }
+export function captureBoardContext() {
+  if (boardContextPromise) return boardContextPromise;
+  boardContextPromise = (async () => {
+    try {
+      const boardInfo = await miro.board.getInfo();
+      cachedContext = {
+        miro_board_id: boardInfo.id,
+      };
+    } catch (error) {
+      console.error('Failed to capture board context:', error);
+    }
+  })();
+  return boardContextPromise;
 }
 
 /**
  * Capture an analytics event with base context.
  * No PII is ever included — only structural/behavioral data.
  */
-function captureEvent(eventName: string, properties: Record<string, any> = {}) {
+async function captureEvent(eventName: string, properties: Record<string, any> = {}) {
   try {
+    // Wait for board context if it's being fetched
+    if (boardContextPromise && !cachedContext) {
+      await boardContextPromise;
+    }
     posthog.capture(eventName, {
       ...cachedContext,
       ...properties,
