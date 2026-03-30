@@ -1,4 +1,4 @@
-export type CategoryType = 'services' | 'events' | 'commands' | 'queries';
+export type CategoryType = 'services' | 'events' | 'commands' | 'queries' | 'channels' | 'containers';
 
 export interface MessageDetails {
   name: string;
@@ -9,6 +9,8 @@ export interface MessageDetails {
 
 export interface StyleResult {
   backgroundColor: string;
+  borderColor: string;
+  iconColor: string;
   fillColor: string;
 }
 

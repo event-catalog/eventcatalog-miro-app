@@ -19,16 +19,38 @@ interface EventCatalogProviderProps {
   children: ReactNode;
 }
 
+const STORAGE_KEY = 'eventcatalog-data';
+
 // Provider component
 export function EventCatalogProvider({ children }: EventCatalogProviderProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [catalogData, setCatalogData] = useState<any>(null);
+  const [catalogData, setCatalogDataState] = useState<any>(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  const setCatalogData = (data: any) => {
+    setCatalogDataState(data);
+    try {
+      if (data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    } catch (e) {
+      console.warn('Failed to save catalog data to localStorage:', e);
+    }
+  };
+
   const value = {
     isLoading,
     setIsLoading,
     catalogData,
     setCatalogData,
-    // Add more values/functions here
   };
 
   return <EventCatalogContext.Provider value={value}>{children}</EventCatalogContext.Provider>;

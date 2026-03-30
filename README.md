@@ -1,106 +1,133 @@
 <div align="center">
 
-<h1>📖 EventCatalog - Miro Integration</h1>
-<h3>Bring your services, commands, queries and events to your Miro board</h3>
-<p>Import your architecture resources directly into your Miro board, for collaboration with your team.</p>
+<h1>EventCatalog - Miro App</h1>
+<h3>Bring your architecture into Miro for collaborative visual design</h3>
+<p>Import your EventCatalog resources into Miro, design your next iteration, and export changes back to your catalog.</p>
 
-<img width="745" alt="EventCatalog" src="./images/miro.png" />
+<img width="745" alt="EventCatalog Miro App" src="./images/miro.png" />
 
-
-<h4>Features: Import resources directly into your Miro board. Visualize your services, commands, queries and events. Service producers and consumers visualized. Generate from OpenAPI and AsyncAPI documents. Import via API or JSON file. Get running in minutes. </h4>
 </div>
 
 ---
 
-### What is the EventCatalog Miro App?
+## What is the EventCatalog Miro App?
 
-The EventCatalog Miro App lets you import your EventCatalog resources directly into your Miro board, for collaboration with your team.
+The EventCatalog Miro App lets you bring your architecture artifacts into Miro — drag services, events, commands, and more onto a board to collaboratively design and explore your systems.
 
-You can import services, commands, queries and events from your EventCatalog instance into your Miro board, you can do this via a JSON file or by importing from a URL.
+Many teams already use Miro for event storming, system design, and planning. This app lets you work with your real architecture resources instead of generic boxes and lines.
 
-Import and drag resources into new architecture diagrams, event storming diagrams, or just use the resources to get started with your next project.
+### Key Features
+
+- **Import your real architecture** — bring services, events, commands, queries, channels, and data stores from EventCatalog into Miro
+- **Drag and drop** — drag resources from the sidebar onto the board
+- **Automatic connections** — draw connectors between resources and the app automatically labels them (e.g. "publishes event", "receives", "writes to")
+- **Two display modes** — view resources as detailed App Cards or compact Post-it notes
+- **Create new resources** — sketch out new services and events directly in the app
+- **Inline editing** — edit names, versions, summaries, and badges without leaving the board
+- **Dependencies toggle** — choose whether to add a service with its full dependency graph or standalone
+- **Auto-layout** — automatically arrange resources in a clean left-to-right flow
+- **Connection highlighting** — select a resource to see all its connections highlighted
+- **Export to JSON** — export the board for use with AI-powered catalog updates
+- **Works with OpenAPI, AsyncAPI, and Schema Registries** — import from any supported specification via EventCatalog plugins
+
+## Demo
+
+### Dragging resources onto the board
+
+<img width="600" alt="Dragging resources" src="./images/dragging-resources.gif" />
+
+### Services with dependencies
+
+<img width="600" alt="Services with dependencies" src="./images/services-with-deps.gif" />
+
+### Editing resources
+
+<img width="600" alt="Editing a resource" src="./images/edit-resource.gif" />
+
+### Automatic connectors
+
+<img width="600" alt="Automatic connectors" src="./images/connectors.gif" />
+
+### Navigating connected resources
+
+<img width="600" alt="Navigating resources" src="./images/navigation.gif" />
+
+### Display modes
+
+**App Card**
+
+<img width="400" alt="App Card mode" src="./images/app-card.png" />
+
+**Post-it**
+
+<img width="400" alt="Post-it mode" src="./images/post-it.png" />
 
 ## Installation
 
-_The EventCatalog Miro App is currently waiting for approval from Miro to be listed on the market place, so for now you can install it by clicking the link below._
-
-- Open the installation page, which can be found [here](https://miro.com/app-install/?response_type=code&client_id=3458764623600229458&redirect_uri=%2Fapp-install%2Fconfirm%2F)
-- Select the team you want to install the app to
-- Install the application
+1. Open the [EventCatalog Miro App installation page](https://miro.com/app-install/?response_type=code&client_id=3458764623600229458&redirect_uri=%2Fapp-install%2Fconfirm%2F)
+2. Select the team you want to install the app to
+3. Install the application
+4. Open a Miro board, go to **Tools, Media and Integrations**, and search for **EventCatalog**
 
 ## Usage
 
-1. Load the app onto your board (previous steps)
-2. Open the app (Click on Tools, Media and Integrations)
-3. Search "EventCatalog" and select the app
+### Importing resources
 
+1. In your EventCatalog project, run `npm run export` to generate a JSON file
+2. Open the Miro app and click **Import Resources**
+3. Upload the JSON file or paste the JSON directly
 
-### Importing resources from EventCatalog
+### Adding resources to the board
 
-You have two options:
+- Click a category (e.g. Services) to see all resources, then drag them onto the board
+- Or drag a category card from the dashboard to create a new blank resource
 
-1. [Import resources from a URL](#importing-resources-from-a-url)
-2. [Import resources from a JSON file](#importing-resources-from-a-json-file)
+### Editing resources
 
-#### Importing resources from a URL
+- Click any resource on the board to view and edit its details
+- Edit name, version, and summary inline
+- Add or remove badges
+- Click connected resources to navigate between them
 
-- Open the miro application and enter the URL of the EventCatalog (must be public)
-- Your resources will be imported into the board
-- Drag and drop the resources to the board where you want them
+### Exporting
 
-#### Importing resources from a JSON file
+Click **Export to JSON** on the dashboard to download the current board state. Use this with [EventCatalog Skills](https://github.com/event-catalog/skills) to update your catalog using AI.
 
-- Navigate to your EventCatalog instance and download the JSON file
-- Open the API route `api/catalog` (e.g `http://demo.eventcatalog.dev/api/catalog`)
-- Save the JSON file to your local machine, and import it into the app
-- Drag and drop the resources to the board where you want them
+## Documentation
 
-### Roadmap
+Full documentation is available at [eventcatalog.dev/docs/miro/overview](https://eventcatalog.dev/docs/miro/overview).
 
-- [x] Let users import resources from EventCatalog from a URL
-- [x] Let users import resources from a JSON file
-- [] Get published on Miro Marketplace
-- [ ] Let users create resource types
-- [ ] Export designs back into EventCatalog
+## Contributing
 
-### Contributing
+We welcome contributions! See the [contributing guide](https://eventcatalog.dev/docs/miro/getting-involved) for details.
 
-**&nbsp;ℹ&nbsp;Note**:
+**Note**:
 
 - We recommend a Chromium-based web browser for local development with HTTP. \
   Safari enforces HTTPS; therefore, it doesn't allow localhost through HTTP.
-- For more information, visit our [developer documentation](https://developers.miro.com).
+- **Chrome 142+** blocks public sites (like miro.com) from loading localhost in an iframe by default. \
+  To fix this, go to `chrome://settings/content/localNetworkAccess` and add `https://miro.com` to the **Allowed** list.
+- For more information, visit the [Miro developer documentation](https://developers.miro.com).
 
 ### How to start locally
 
-- Run `npm i` to install dependencies.
-- Run `npm start` to start developing. \
-  Your URL should be similar to this example:
- ```
- http://localhost:3000
- ```
-- Paste the URL under **App URL** in your
-  [app settings](https://developers.miro.com/docs/build-your-first-hello-world-app#step-3-configure-your-app-in-miro).
-- Open a board; you should see your app in the app toolbar or in the **Apps**
-  panel.
-
-### How to build the app
-
-- Run `npm run build`. \
-  This generates a static output inside [`dist/`](./dist), which you can host on a static hosting
-  service.
-
-### Folder structure
-
-<!-- The following tree structure is just an example -->
-
+```bash
+npm install
+npm start
 ```
-.
-├── src
-│  ├── assets
-│  │  └── style.css
-│  ├── app.tsx      // The code for the app lives here
-│  └── index.ts    // The code for the app entry point lives here
-├── app.html       // The app itself. It's loaded on the board inside the 'appContainer'
-└── index.html     // The app entry point. This is what you specify in the 'App URL' box in the Miro app settings
+
+Your URL should be similar to `http://localhost:3000`. Paste it under **App URL** in your [app settings](https://developers.miro.com/docs/build-your-first-hello-world-app#step-3-configure-your-app-in-miro).
+
+### How to build
+
+```bash
+npm run build
 ```
+
+This generates a static output inside `dist/`, which you can host on a static hosting service.
+
+## Community
+
+- [Discord](https://eventcatalog.dev/discord) — chat with us and other users
+- [GitHub Issues](https://github.com/event-catalog/eventcatalog-miro-app/issues) — report bugs or request features
+- [eventcatalog.dev](https://eventcatalog.dev) — learn more about EventCatalog
