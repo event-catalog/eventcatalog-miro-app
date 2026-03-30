@@ -18,6 +18,7 @@
     "lucide-react": "^0.487.0",
     "mirotone": "5",
     "nanostores": "^1.2.0",
+    "posthog-js": "^1.364.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^7.5.0"

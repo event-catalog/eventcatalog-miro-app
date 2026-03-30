@@ -60,6 +60,15 @@ import {
   convertAllBoardItems,
 } from '../stores/boardStore';
 import { handleServiceDrop, autoLayoutBoard, handleConnectorCreated } from '../stores/graphStore';
+import {
+  trackResourceDroppedToBoard,
+  trackNewResourceCreated,
+  trackResourceRemoved,
+  trackResourceEdited,
+  trackAutoLayoutUsed,
+  trackCategorySelected,
+  trackCatalogExported,
+} from '../utils/analytics';
 
 // Resource item for the drill-down list
 interface ResourceItemProps {
@@ -133,6 +142,7 @@ const ResourceItem = memo(({ resource, category, styles }: ResourceItemProps) =>
         onClick={(e) => {
           e.stopPropagation();
           removeResource(category, resource.id, resource.version);
+          trackResourceRemoved(category);
         }}
         className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-red-50 rounded shrink-0 mt-0.5"
         title="Remove from list"
@@ -271,6 +281,7 @@ const ResourceList = () => {
         );
         newResource.boardItemId = boardItem.id;
         addResource(itemData.category, newResource);
+        trackNewResourceCreated(itemData.category);
         return;
       }
 
@@ -279,6 +290,7 @@ const ResourceList = () => {
       } else {
         await createBoardItem(itemData, itemData.style, x, y);
       }
+      trackResourceDroppedToBoard(itemData.category);
     };
     const handleItemsDeleted = (event: any) => {
       const deletedItems = event.items || [];
@@ -340,6 +352,7 @@ const ResourceList = () => {
   }
 
   const handleAutoLayout = async () => {
+    trackAutoLayoutUsed();
     setIsLayouting(true);
     try {
       await autoLayoutBoard();
@@ -438,6 +451,7 @@ const ResourceList = () => {
       if (editingField === 'summary') updates.summary = $editValue.get().trim();
 
       updateResource(matchedCategory, matchedResource.id, matchedResource.version, updates);
+      trackResourceEdited(editingField);
 
       // Also update the board item if it exists — match by exact Miro board item ID
       const boardItemId = matchedResource.boardItemId || selectedNode.id;
@@ -1005,6 +1019,7 @@ const ResourceList = () => {
                   onClick={() => {
                     setActiveCategory(key);
                     setSearchTerm('');
+                    trackCategorySelected(key);
                   }}
                   className="relative rounded-xl p-4 border hover:shadow-md transition-all duration-200 text-left group cursor-grab miro-draggable"
                   style={{ backgroundColor: bgColor, borderColor }}
@@ -1091,6 +1106,7 @@ const ResourceList = () => {
                     a.download = 'miro-board-export.json';
                     a.click();
                     URL.revokeObjectURL(url);
+                    trackCatalogExported();
                   }}
                   className="w-full flex items-center justify-center gap-2 py-2.5 bg-white text-gray-700 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium border border-gray-200 hover:border-purple-200"
                 >

@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router';
 import { setCatalogData } from '../stores/catalogStore';
+import { trackCatalogImportedFile, trackCatalogImportedPaste, trackCatalogLoaded } from '../utils/analytics';
 
 const ConnectToEventCatalog = () => {
   const [jsonText, setJsonText] = useState<string>('');
@@ -17,6 +18,8 @@ const ConnectToEventCatalog = () => {
         try {
           const jsonData = JSON.parse(event.target?.result as string);
           setCatalogData(jsonData);
+          trackCatalogImportedFile();
+          trackCatalogLoaded(jsonData);
           navigate('/');
         } catch (error) {
           console.error('Error parsing JSON file:', error);
@@ -191,6 +194,8 @@ const ConnectToEventCatalog = () => {
               try {
                 const jsonData = JSON.parse(jsonText);
                 setCatalogData(jsonData);
+                trackCatalogImportedPaste();
+                trackCatalogLoaded(jsonData);
                 navigate('/');
               } catch (e) {
                 setError('Invalid JSON. Please check the format and try again.');
