@@ -73,7 +73,7 @@ Many teams already use Miro for event storming, system design, and planning. Thi
 
 ### Importing resources
 
-1. In your EventCatalog project, run `npm run export` to generate a JSON file
+1. In your EventCatalog project, run `npx eventcatalog export` to generate a JSON file (requires `@eventcatalog/core` 3.26.14 or later)
 2. Open the Miro app and click **Import Resources**
 3. Upload the JSON file or paste the JSON directly
 

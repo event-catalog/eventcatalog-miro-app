@@ -100,7 +100,8 @@ const ConnectToEventCatalog = () => {
               <div>
                 <p className="text-sm text-gray-700 font-medium">Export your catalog</p>
                 <p className="text-xs text-gray-400 mt-0.5">
-                  Run <code className="text-purple-600 bg-purple-50 px-1 py-0.5 rounded">npm run export</code> in your project
+                  Run <code className="text-purple-600 bg-purple-50 px-1 py-0.5 rounded">npx eventcatalog export</code> in your
+                  project
                 </p>
               </div>
             </li>
